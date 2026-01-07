@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce REST API</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2.5rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--surface);
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            margin-bottom: 3rem;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .endpoints {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        
+        .endpoints h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .endpoint-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .endpoint-group h3 {
+            color: var(--primary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+        
+        .endpoint {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .method {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .method.get { background: #22c55e20; color: #22c55e; }
+        .method.post { background: #3b82f620; color: #3b82f6; }
+        .method.put { background: #f59e0b20; color: #f59e0b; }
+        .method.delete { background: #ef444420; color: #ef4444; }
+        
+        .path {
+            color: var(--text-muted);
+            font-family: 'SF Mono', monospace;
+            font-size: 0.875rem;
+        }
+        
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        .cta:hover {
+            background: var(--primary-dark);
+        }
+        
+        .footer {
+            margin-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🛒</div>
+        <h1>E-commerce REST API</h1>
+        <p class="subtitle">Spring Boot REST API for E-commerce Platform</p>
+        
+        <div class="status">
+            <span class="status-dot"></span>
+            <span>API Running</span>
+        </div>
+        
+        <div class="endpoints">
+            <h2>📍 API Endpoints</h2>
+            
+            <div class="endpoint-group">
+                <h3>Authentication</h3>
+                <div class="endpoint">
+                    <span class="method post">POST</span>
+                    <span class="path">/api/auth/register</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method post">POST</span>
+                    <span class="path">/api/auth/login</span>
+                </div>
+            </div>
+            
+            <div class="endpoint-group">
+                <h3>Products</h3>
+                <div class="endpoint">
+                    <span class="method get">GET</span>
+                    <span class="path">/api/products</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method get">GET</span>
+                    <span class="path">/api/products/{id}</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method get">GET</span>
+                    <span class="path">/api/products/search?q=query</span>
+                </div>
+            </div>
+            
+            <div class="endpoint-group">
+                <h3>Cart</h3>
+                <div class="endpoint">
+                    <span class="method get">GET</span>
+                    <span class="path">/api/cart</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method post">POST</span>
+                    <span class="path">/api/cart/items</span>
+                </div>
+            </div>
+            
+            <div class="endpoint-group">
+                <h3>Orders</h3>
+                <div class="endpoint">
+                    <span class="method get">GET</span>
+                    <span class="path">/api/orders</span>
+                </div>
+                <div class="endpoint">
+                    <span class="method post">POST</span>
+                    <span class="path">/api/orders</span>
+                </div>
+            </div>
+        </div>
+        
+        <a href="/h2-console" class="cta">
+            📊 H2 Database Console
+        </a>
+        
+        <p class="footer">
+            Spring Boot 3.2 • JWT Auth • Stripe Payments
+        </p>
+    </div>
+</body>
+</html>
